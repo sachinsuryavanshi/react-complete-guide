@@ -77,7 +77,11 @@ export const ExpenseForm = (props) => {
             value={enteredDate}
           />
         </div>
+
         <div className="expense__controls__actions">
+          <button type="button" onClick={props.onCancel}>
+            Cancel
+          </button>
           <button type="submit">Add Expense</button>
         </div>
       </div>

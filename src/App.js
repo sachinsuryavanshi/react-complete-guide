@@ -1,34 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
+const DUMMY_EXPENSES = [
+  {
+    id: "e1",
+    title: "AWS Book",
+    amount: 94.12,
+    date: new Date(2020, 7, 14),
+  },
+  { id: "e2", title: "New TV", amount: 799.49, date: new Date(2021, 2, 12) },
+  {
+    id: "e3",
+    title: "Car Insurance",
+    amount: 294.67,
+    date: new Date(2021, 2, 28),
+  },
+  {
+    id: "e4",
+    title: "New Desk (Wooden)",
+    amount: 450,
+    date: new Date(2021, 5, 12),
+  },
+];
 
 const App = () => {
-  const expenses = [
-    {
-      id: "e1",
-      title: "Toilet Paper",
-      amount: 94.12,
-      date: new Date(2020, 7, 14),
-    },
-    { id: "e2", title: "New TV", amount: 799.49, date: new Date(2021, 2, 12) },
-    {
-      id: "e3",
-      title: "Car Insurance",
-      amount: 294.67,
-      date: new Date(2021, 2, 28),
-    },
-    {
-      id: "e4",
-      title: "New Desk (Wooden)",
-      amount: 450,
-      date: new Date(2021, 5, 12),
-    },
-  ];
+  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
 
-  const expenseHandlerOnSave = (expenseData) => {
-    console.log("App JS");
-    console.log(expenseData);
+  const expenseHandlerOnSave = (expense) => {
+    // console.log("App JS");
+    // console.log(expenseData);
+    setExpenses((prevExpeses) => {
+      return [expense, ...prevExpeses];
+    });
+    // console.log(expenses);
   };
 
   // return React.createElement(
@@ -37,7 +42,7 @@ const App = () => {
   //   React.createElement('h2', {}, "Let's get started!"),
   //   React.createElement(Expenses, { items: expenses })
   // );
-
+  // console.log(expenses);
   return (
     <div>
       <NewExpense onSaveData={expenseHandlerOnSave} />

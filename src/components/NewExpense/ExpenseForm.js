@@ -24,6 +24,7 @@ export const ExpenseForm = (props) => {
   };
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
+    //console.log(enteredDate);
     // setUserInput({ ...userInput, enteredDate: event.target.value });
   };
   const amountChangeHandler = (event) => {
@@ -35,10 +36,10 @@ export const ExpenseForm = (props) => {
     event.preventDefault();
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
-      date: enteredDate,
+      amount: +enteredAmount,
+      date: new Date(enteredDate),
     };
-    //console.log(expenseData);
+    console.log(expenseData);
     props.onSaveDataExpense(expenseData);
     setEnteredTitle("");
     setEnteredDate("");
@@ -76,7 +77,11 @@ export const ExpenseForm = (props) => {
             value={enteredDate}
           />
         </div>
+
         <div className="expense__controls__actions">
+          <button type="button" onClick={props.onCancel}>
+            Cancel
+          </button>
           <button type="submit">Add Expense</button>
         </div>
       </div>
